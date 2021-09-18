@@ -1,17 +1,20 @@
 package webapi
 
 import (
+	"fmt"
+
 	"gihub.com/momzor/fizzbuzz/pkg/stats"
 	"github.com/gin-gonic/gin"
 )
 
 type Server struct {
-	conf   Config
-	engine *gin.Engine
+	Conf   Config
+	Engine *gin.Engine
 }
 
 type Config struct {
-	addr string
+	BaseUrl string
+	Port    string
 }
 type Request struct {
 }
@@ -22,12 +25,14 @@ type Response struct {
 type Body struct {
 }
 
-func (s Server) Start() error {
-	s.engine = gin.Default()
+func (s *Server) Start() error {
+	s.Engine = gin.Default()
 	// middleware catching all requests for stats
-	s.engine.Use(stats.AccessiLstner())
-	s.engine.GET("/fizzbuzz", getFizzBuzz)
-	s.engine.Run(s.conf.addr)
+	s.Engine.Use(stats.AccessiLstner())
+	s.Engine.GET("/fizzbuzz", getFizzBuzz)
+	fmt.Println(s.Conf.BaseUrl + ":" + s.Conf.Port)
+	fmt.Println("DEBUG")
+	s.Engine.Run(s.Conf.BaseUrl + ":" + s.Conf.Port)
 
 	return nil
 }

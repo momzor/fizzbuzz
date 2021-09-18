@@ -1,0 +1,21 @@
+*.exe
+.vscode
+.idea
+*.dll
+*.so
+*.dylib
+bin/
+.DS_Store
+vendor
+vendor/
+.ignore
+.env
+
+# Ide cache files
+~/
+.cache/
+
+# coverage
+*.out
+#Test
+*.test

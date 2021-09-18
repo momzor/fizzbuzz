@@ -2,25 +2,24 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"os"
 
 	"gihub.com/momzor/fizzbuzz/pkg/webapi"
 )
 
 func main() {
-	s := webapi.Server{}
+
+	c := webapi.Config{
+		BaseUrl: os.Getenv("WEB_API_BASE_URL"),
+		Port:    os.Getenv("WEB_API_PORT"),
+	}
+	s := webapi.Server{
+		Conf: c,
+	}
 
 	err := s.Start()
 	if err != nil {
-
 		fmt.Println("ERROR", err)
-	}
-
-	fmt.Println("run baby run....")
-
-	for {
-		time.Sleep(time.Nanosecond * 2000)
-		fmt.Println("runings....")
 	}
 
 }

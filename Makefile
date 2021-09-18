@@ -15,7 +15,7 @@ install: ## Download and install go mod
 ## up with docker-compose
 up:
 	@D_PATH=Dockerfile docker-compose up --remove-orphans --build -d
-	@docker-compose logs -f lbc_test_fizzbuzz
+	@docker-compose logs -f app
 
 ## down with docker-compose
 down:
