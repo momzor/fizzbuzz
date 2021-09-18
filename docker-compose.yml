@@ -1,0 +1,25 @@
+
+version: '3.4'
+services:
+    app:
+        build:
+            dockerfile: ${D_PATH:-Dockerfile}
+            context: .
+        container_name: lbc_test_fizzbuzz
+        # depends_on:
+        #     - mongodb
+        ports:
+            - 8000:80
+        environment:
+            - PORT=80
+            - ENV=debug
+        volumes:
+            - ./:/go/src
+    mongodb:
+      image: mongo
+      ports:
+        - 27017:27017
+      volumes:
+        - mongodb:/data/db
+volumes:
+  mongodb: 
