@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"time"
 
@@ -16,16 +15,11 @@ import (
 var (
 	// ErrNoDocuments record not found error
 	ErrNoDocuments error = mongo.ErrNoDocuments
-	// ErrAbsolutePath error raised when a migrationDir is absolute
-	ErrAbsolutePath = errors.New("path should not be absolute")
 	// DefaultTimeout is the default timeout for any interaction with the Mongo DB
 	DefaultTimeout = 5 * time.Second
 )
 
 // Config holds database configuration
-// URI examples:
-//      "mongodb+srv://user:password@host:port/database?retryWrites=true&w=majority"
-//      "mongodb://user:password@host:port"
 type Config struct {
 	URI string
 	DB  string
@@ -44,6 +38,7 @@ type Client interface {
 type Collection interface {
 	InsertOne(ctx context.Context, document interface{}, opts ...*options.InsertOneOptions) (*mongo.InsertOneResult, error)
 	FindOne(ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) Result
+	Aggregate(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (*mongo.Cursor, error)
 }
 
 // Result is the interface to interact with Query results
@@ -92,14 +87,22 @@ func (m mongoClient) Disconnect(ctx context.Context) error {
 	return m.client.Disconnect(subCtx)
 }
 
+// Collection  Wrapping third party for mocks generation
 func (m mongoClient) Collection(name string, opts ...*options.CollectionOptions) Collection {
 	return mongoCollection{c: m.db.Collection(name, opts...)}
 }
 
+// InsertOne  Wrapping third party for mocks generation
 func (m mongoCollection) InsertOne(ctx context.Context, document interface{}, opts ...*options.InsertOneOptions) (*mongo.InsertOneResult, error) {
 	return m.c.InsertOne(ctx, document, opts...)
 }
 
+// FindOne  Wrapping third party for mocks generation
 func (m mongoCollection) FindOne(ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) Result {
 	return m.c.FindOne(ctx, filter, opts...)
+}
+
+// Aggregate Wrapping third party for mocks generation
+func (m mongoCollection) Aggregate(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (*mongo.Cursor, error) {
+	return m.c.Aggregate(ctx, pipeline, opts...)
 }

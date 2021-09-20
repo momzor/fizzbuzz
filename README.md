@@ -17,6 +17,15 @@ The output would look like this: ""1,2,fizz,4,buzz,fizz,7,8,fizz,buzz,11,fizz,13
 - Return the parameters corresponding to the most used request, as well as the number of hits for this request
 
 
+todo :
+- [ ] Swagger resource doc getFizzbuzz
+- [ ] Swagger resource doc stats
+- [ ] test units getFizzbuzz
+- [ ] test units midldleware
+- [ ] stats middleware
+- [ ] access log insert mongo
+- [ ] stats resource
+- [ ] Description on all functions
 
 ## Requirements
 
