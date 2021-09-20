@@ -1,0 +1,44 @@
+host: localhost:80
+info:
+  contact:
+    email: m.benaida.pro@gmail.com
+    name: Momzor
+  description: LBC test fizzbuzz
+  license:
+    url: https://www.gnu.org/licenses/quick-guide-gplv3.html
+  title: LBC test fizzbuzz
+  version: "1.0"
+paths:
+  /fizzbuzz:
+    get:
+      description: get custom Fizzbuzz
+      parameters:
+      - description: int1 query parameter
+        in: query
+        name: int1
+        required: true
+        type: integer
+      - description: int2 query parameter
+        in: query
+        name: int2
+        required: true
+        type: integer
+      - description: limit query parameter
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: str1 query parameter
+        in: query
+        name: str1
+        required: true
+        type: string
+      - description: str2 query parameter
+        in: query
+        name: str2
+        required: true
+        type: string
+      produces:
+      - application/json
+      summary: Return Fizzbuzz resource
+swagger: "2.0"

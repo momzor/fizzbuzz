@@ -15,13 +15,14 @@ const (
 	STATS_DB_COLLECTION_NAME = "access_events"
 )
 
+// Stats struct representing the Stats resrouce
 type Stats struct {
 	Hits       int                 `bson:"count"`
 	Parameters map[string][]string `bson:"parameters"`
 	Resource   string              `bson:"resource"`
 }
 
-// DB Agregate for retreiving most used params for fizzbuzz resource
+// StatsHandler  DB Agregate for retreiving most used params for fizzbuzz resource
 func (s *Server) StatsHandler(c *gin.Context) {
 	pip := []bson.M{
 		{"$match": bson.M{"method": http.MethodGet, "resource": FIZZBUZZ_RESOURCE_NAME}},

@@ -1,0 +1,64 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "LBC test fizzbuzz",
+        "title": "LBC test fizzbuzz",
+        "contact": {
+            "name": "Momzor",
+            "email": "m.benaida.pro@gmail.com"
+        },
+        "license": {
+            "url": "https://www.gnu.org/licenses/quick-guide-gplv3.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:80",
+    "paths": {
+        "/fizzbuzz": {
+            "get": {
+                "description": "get custom Fizzbuzz",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Return Fizzbuzz resource",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "int1 query parameter",
+                        "name": "int1",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "int2 query parameter",
+                        "name": "int2",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "limit query parameter",
+                        "name": "limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "str1 query parameter",
+                        "name": "str1",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "str2 query parameter",
+                        "name": "str2",
+                        "in": "query",
+                        "required": true
+                    }
+                ]
+            }
+        }
+    }
+}

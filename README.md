@@ -21,10 +21,11 @@ todo :
 - [ ] Swagger resource doc getFizzbuzz
 - [ ] Swagger resource doc stats
 - [ ] test units getFizzbuzz
+- [ ] test units stats
 - [ ] test units midldleware
-- [ ] stats middleware
-- [ ] access log insert mongo
-- [ ] stats resource
+- [x] stats middleware
+- [x] access log insert mongo
+- [x] stats resource
 - [ ] Description on all functions
 
 ## Requirements

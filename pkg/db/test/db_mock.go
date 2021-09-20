@@ -8,8 +8,8 @@ import (
 	context "context"
 	reflect "reflect"
 
-	db "gihub.com/momzor/fizzbuzz/pkg/db"
 	gomock "github.com/golang/mock/gomock"
+	db "github.com/momzor/fizzbuzz/pkg/db"
 	mongo "go.mongodb.org/mongo-driver/mongo"
 	options "go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -105,6 +105,26 @@ func NewMockCollection(ctrl *gomock.Controller) *MockCollection {
 // EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockCollection) EXPECT() *MockCollectionMockRecorder {
 	return m.recorder
+}
+
+// Aggregate mocks base method.
+func (m *MockCollection) Aggregate(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (*mongo.Cursor, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, pipeline}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "Aggregate", varargs...)
+	ret0, _ := ret[0].(*mongo.Cursor)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Aggregate indicates an expected call of Aggregate.
+func (mr *MockCollectionMockRecorder) Aggregate(ctx, pipeline interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, pipeline}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Aggregate", reflect.TypeOf((*MockCollection)(nil).Aggregate), varargs...)
 }
 
 // FindOne mocks base method.

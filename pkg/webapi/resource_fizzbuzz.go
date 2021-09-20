@@ -14,7 +14,7 @@ const (
 	FIZZBUZZ_RESOURCE_NAME  = "fizzbuzz"
 )
 
-type InputFilter struct {
+type Fizzbuzz struct {
 	Int1  int    `schema:"int1,required"`
 	Int2  int    `schema:"int2,required"`
 	Limit int    `schema:"limit,required"`
@@ -22,10 +22,19 @@ type InputFilter struct {
 	Str2  string `schema:"str2,required"`
 }
 
-// todo: in order to prevent perf issues set max limit to 10000
+// FizzBuzzHandler godoc
+// @Summary Return Fizzbuzz resource
+// @Description get custom Fizzbuzz
+// @Produce json
+// @Param int1 query int true "int1 query parameter"
+// @Param int2 query int true "int2 query parameter"
+// @Param limit query int true "limit query parameter"
+// @Param str1 query string true "str1 query parameter"
+// @Param str2 query string true "str2 query parameter"
+// @Router /fizzbuzz [get]
 func (s *Server) FizzBuzzHandler(c *gin.Context) {
 	//Query Validation
-	var f InputFilter
+	var f Fizzbuzz
 
 	if err := schema.NewDecoder().Decode(&f, c.Request.URL.Query()); err != nil {
 		c.IndentedJSON(http.StatusBadRequest, ErrorResponse{
@@ -38,7 +47,7 @@ func (s *Server) FizzBuzzHandler(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, buildFizzBuzz(f))
 }
 
-func buildFizzBuzz(f InputFilter) (fb string) {
+func buildFizzBuzz(f Fizzbuzz) (fb string) {
 	var r []string
 	bothMultiplier := f.Int1 * f.Int2
 
