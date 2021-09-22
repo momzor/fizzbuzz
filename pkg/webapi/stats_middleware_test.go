@@ -36,10 +36,8 @@ func Test_StatsMiddleware(t *testing.T) {
 
 		w := httptest.NewRecorder()
 		_, engine := gin.CreateTestContext(w)
-		r, err := http.NewRequest(http.MethodGet, FIZZBUZZ_RESOURCE_ROUTE, nil)
-		fmt.Println("DEBUG12: ", err)
+		r, _ := http.NewRequest(http.MethodGet, FIZZBUZZ_RESOURCE_ROUTE, nil)
 		mServer.InitServer()
-		fmt.Println(mServer.Router)
 		engine.ServeHTTP(w, r)
 
 	})
