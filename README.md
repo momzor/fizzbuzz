@@ -34,5 +34,5 @@ Run `make unit-test` for unit testing the application
 - [] Hot reload for dev env [with air](https://github.com/cosmtrek/air)
 - [] functional tests
 - [] inject dedecated logger
-- [] add linter and pre commit hooks 
+- [] add pre commit hooks for lint
 - [] add a fixtures file for fizzbuzz builder test for more table cases
