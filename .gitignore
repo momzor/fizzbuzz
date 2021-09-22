@@ -19,3 +19,6 @@ vendor/
 *.out
 #Test
 *.test
+
+#mock files
+*_mock*

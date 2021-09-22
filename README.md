@@ -18,15 +18,16 @@ The output would look like this: ""1,2,fizz,4,buzz,fizz,7,8,fizz,buzz,11,fizz,13
 
 
 todo :
-- [ ] Swagger resource doc getFizzbuzz
-- [ ] Swagger resource doc stats
+- [x] Swagger resource doc getFizzbuzz
+- [x] Swagger resource doc stats
 - [ ] test units getFizzbuzz
 - [ ] test units stats
 - [ ] test units midldleware
 - [x] stats middleware
 - [x] access log insert mongo
-- [x] stats resource
+- [x] stats resource  & query
 - [ ] Description on all functions
+- [] Clean ReadMe and describe 
 
 ## Requirements
 

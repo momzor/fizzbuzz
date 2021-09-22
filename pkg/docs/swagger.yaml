@@ -1,4 +1,3 @@
-host: localhost:80
 info:
   contact:
     email: m.benaida.pro@gmail.com
@@ -41,4 +40,10 @@ paths:
       produces:
       - application/json
       summary: Return Fizzbuzz resource
+  /stats:
+    get:
+      description: get The most used params
+      produces:
+      - application/json
+      summary: Return Stats resource
 swagger: "2.0"

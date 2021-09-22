@@ -8,7 +8,7 @@ services:
         depends_on:
             - mongo
         ports:
-            -  ${SERVICE_PORT:-80}:80
+            -  ${SERVICE_PORT:-8000}:80
         environment:
             - ENV=${ENV:-debug}
             - WEB_API_PORT=${WEB_API_PORT:-80}
@@ -16,6 +16,7 @@ services:
             # Mongo config
             - MONGO_URI=mongodb://${MONGO_USER:-u}:${MONGO_PASSWORD:-p}@mongo:${DBPORT:-27017}
             - MONGO_DB=${MONGO_DB_NAME:-db}
+            - APP_ENV=${APP_ENV:-debug}
         volumes:
             - ./:/go/src
     mongo:

@@ -74,6 +74,15 @@ var doc = `{
                     }
                 ]
             }
+        },
+        "/stats": {
+            "get": {
+                "description": "get The most used params",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Return Stats resource"
+            }
         }
     }
 }`
@@ -90,7 +99,7 @@ type swaggerInfo struct {
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
-	Host:        "localhost:80",
+	Host:        "",
 	BasePath:    "",
 	Schemes:     []string{},
 	Title:       "LBC test fizzbuzz",

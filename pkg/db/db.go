@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-//go:generate mockgen -source=db.go -destination=./test/db_mock.go -package=db
+//go:generate mockgen -source=db.go -destination=./db_mock.go -package=db
 
 var (
 	// ErrNoDocuments record not found error

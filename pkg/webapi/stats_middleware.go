@@ -7,7 +7,14 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/momzor/fizzbuzz/pkg/db"
 )
+
+//go:generate mockgen -source=stats_middleware.go -destination=./stats_middleware_mock.go -package=webapi
+
+type APIMiddleware interface {
+	StatsMiddleware() gin.HandlerFunc
+}
 
 // AccessEvent represents a db document of the
 // collection "access_event" holding all api access events
@@ -19,8 +26,18 @@ type AccessEvent struct {
 	Parameters map[string][]string `bson:"parameters"`
 }
 
+type apiMiddleware struct {
+	db db.Client
+}
+
+func NewAPIMiddleware(db db.Client) APIMiddleware {
+	return &apiMiddleware{
+		db: db,
+	}
+}
+
 //AccessiLstner middleware
-func (s *Server) statsMiddleware() gin.HandlerFunc {
+func (am *apiMiddleware) StatsMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// call c.Next() in order to prevent blocking user if db insert fails
 		c.Next()
@@ -32,7 +49,7 @@ func (s *Server) statsMiddleware() gin.HandlerFunc {
 			Date:       time.Now(),
 		}
 
-		_, err := s.DBClient.Collection(STATS_DB_COLLECTION_NAME).InsertOne(context.Background(), &aE)
+		_, err := am.db.Collection(STATS_DB_COLLECTION_NAME).InsertOne(context.Background(), &aE)
 		if err != nil {
 			log.Fatal(fmt.Sprintf("Failed to save BSON to Mongo DB: %s", err))
 		}

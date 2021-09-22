@@ -23,7 +23,7 @@ down:
 
 ## generate swagger documentation for web api
 doc:
-	@swag init -g ./pkg/webapi/server.go
+	@swag init -g ./pkg/webapi/server.go -o ./pkg/docs
 
 ## generate mock for unit tests
 mock:

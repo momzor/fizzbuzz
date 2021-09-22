@@ -32,18 +32,18 @@ type Fizzbuzz struct {
 // @Param str1 query string true "str1 query parameter"
 // @Param str2 query string true "str2 query parameter"
 // @Router /fizzbuzz [get]
-func (s *Server) FizzBuzzHandler(c *gin.Context) {
-	//Query Validation
+func FizzBuzzHandler(c *gin.Context) {
 	var f Fizzbuzz
 
 	if err := schema.NewDecoder().Decode(&f, c.Request.URL.Query()); err != nil {
 		c.IndentedJSON(http.StatusBadRequest, ErrorResponse{
 			Status:  http.StatusBadRequest,
-			Errors:  []string{err.Error()},
+			Errors:  []string{"invalid parameters, please refer to the api documentation", err.Error()},
 			Message: http.StatusText(http.StatusBadRequest),
 		})
 		return
 	}
+
 	c.IndentedJSON(http.StatusOK, buildFizzBuzz(f))
 }
 
@@ -51,7 +51,13 @@ func buildFizzBuzz(f Fizzbuzz) (fb string) {
 	var r []string
 	bothMultiplier := f.Int1 * f.Int2
 
-	for i := 1; i < f.Limit; i++ {
+	for i := 1; i <= f.Limit; i++ {
+		// no Zero division
+		if f.Int1 <= 0 || f.Int2 <= 0 {
+			r = append(r, strconv.Itoa(i))
+			continue
+		}
+
 		if i%bothMultiplier == 0 {
 			r = append(r, f.Str1+f.Str2)
 			continue
