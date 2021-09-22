@@ -30,13 +30,14 @@ type apiMiddleware struct {
 	db db.Client
 }
 
+// New NewAPIMiddleware create an apiMiddleware with injected db client
 func NewAPIMiddleware(db db.Client) APIMiddleware {
 	return &apiMiddleware{
 		db: db,
 	}
 }
 
-//AccessiLstner middleware
+//StatsMiddleware middleware insert stats data from handled query
 func (am *apiMiddleware) StatsMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// call c.Next() in order to prevent blocking user if db insert fails
@@ -56,7 +57,7 @@ func (am *apiMiddleware) StatsMiddleware() gin.HandlerFunc {
 	}
 }
 
-// resource mapper
+// resource mapper, maps a route with a resource name
 func mapResourceFromPath(p string) string {
 	switch p {
 	case FIZZBUZZ_RESOURCE_ROUTE:

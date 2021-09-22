@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// Run test units for webapi FizzBuzzhandler function
+// Test_FizzBuzzHandler Run test units for webapi FizzBuzzhandler function
 func Test_FizzBuzzHandler(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
@@ -48,6 +48,7 @@ func Test_FizzBuzzHandler(t *testing.T) {
 
 }
 
+// Test_buildFizzBuzz Run test the builder which build the fizzbuzz string from parameters
 func Test_buildFizzBuzz(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()

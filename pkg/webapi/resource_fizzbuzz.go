@@ -14,6 +14,7 @@ const (
 	FIZZBUZZ_RESOURCE_NAME  = "fizzbuzz"
 )
 
+// Fizzbuzz represents the resource payload
 type Fizzbuzz struct {
 	Int1  int    `schema:"int1,required"`
 	Int2  int    `schema:"int2,required"`
@@ -47,6 +48,9 @@ func FizzBuzzHandler(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, buildFizzBuzz(f))
 }
 
+/* BuildFizzBuzz builds a fizz buzz string rom a Fizzbuzz payload
+S
+*/
 func buildFizzBuzz(f Fizzbuzz) (fb string) {
 	var r []string
 	bothMultiplier := f.Int1 * f.Int2

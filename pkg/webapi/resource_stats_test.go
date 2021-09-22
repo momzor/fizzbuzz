@@ -11,6 +11,7 @@ import (
 	"github.com/momzor/fizzbuzz/pkg/db"
 )
 
+//Test_StatsHandler handle
 func Test_StatsHandler(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()

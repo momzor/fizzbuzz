@@ -11,7 +11,7 @@ import (
 )
 
 // Build dependecies and injects them for server creation
-// Create A web server and exposes it
+// Create a web server, start and exposes it
 func main() {
 	c := webapi.Config{
 		BaseUrl: os.Getenv("WEB_API_BASE_URL"),
@@ -24,6 +24,7 @@ func main() {
 		URI: os.Getenv("MONGO_URI"),
 		DB:  os.Getenv("MONGO_DB"),
 	})
+
 	defer dbC.Disconnect(dbctx)
 
 	if err != nil {
@@ -47,5 +48,9 @@ func main() {
 		log.Fatal(fmt.Sprintf("An error occured during the web Api init : %s", err))
 	}
 
-	s.Router.Run(s.Conf.BaseUrl + ":" + s.Conf.Port)
+	err = s.Router.Run(s.Conf.BaseUrl + ":" + s.Conf.Port)
+	if err != nil {
+		log.Fatal(fmt.Sprintf("Can not start server : %s", err))
+	}
+
 }

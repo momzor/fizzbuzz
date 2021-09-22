@@ -28,9 +28,9 @@ This application provide an OpenApi documentation you can check here : [swagger]
 
 ## tests
 
-Run `make unit-tests` for unit testing the application
+Run `make unit-test` for unit testing the application
 
-## enhancements & comming features :
+## V2. enhancements & comming features :
 - [] Hot reload for dev env [with air](https://github.com/cosmtrek/air)
 - [] functional tests
 - [] inject dedecated logger

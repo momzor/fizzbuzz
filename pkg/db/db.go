@@ -30,7 +30,7 @@ type Config struct {
 // Client represents the client to interact with a Mongo DB
 type Client interface {
 	Health(context.Context) error
-	Disconnect(context.Context) error
+	Disconnect(context.Context)
 	Collection(name string, opts ...*options.CollectionOptions) Collection
 }
 
@@ -81,10 +81,10 @@ func (m mongoClient) Health(ctx context.Context) error {
 	return m.client.Ping(subCtx, readpref.Primary())
 }
 
-func (m mongoClient) Disconnect(ctx context.Context) error {
+func (m mongoClient) Disconnect(ctx context.Context) {
 	subCtx, cancel := context.WithTimeout(ctx, m.timeout)
 	defer cancel()
-	return m.client.Disconnect(subCtx)
+	_ = m.client.Disconnect(subCtx)
 }
 
 // Collection  Wrapping third party for mocks generation

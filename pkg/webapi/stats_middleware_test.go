@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-//
+//Test_StatsMiddleware test the fact that stat middleware is called when the server handle a request
 func Test_StatsMiddleware(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()

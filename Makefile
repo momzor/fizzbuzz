@@ -8,6 +8,7 @@ COVER_OUT=${PWD}/$(IGNORED_FOLDER)/coverage.out
 deps:
 	@go install github.com/swaggo/swag/cmd/swag@latest
 	@go install github.com/golang/mock/mockgen@latest
+	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
 install: ## Download and install go mod
 	@go mod download
@@ -33,6 +34,9 @@ mock:
 unit-test: mock
 	@mkdir -p .ignore
 	@go test -gcflags=-l -count=1 -race -coverprofile=${COVER_OUT} -covermode=atomic ./...
+
+lint:
+	@golangci-lint run
 
 ## Cover
 cover:

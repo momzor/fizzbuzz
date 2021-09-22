@@ -8,6 +8,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
 )
 
+// Server representing a web server and its dependeincies
 type Server struct {
 	Conf       Config
 	DBClient   db.Client
@@ -16,12 +17,14 @@ type Server struct {
 	Handler    APIHandler
 }
 
+// Config Configuration for web server
 type Config struct {
 	Env     string
 	BaseUrl string
 	Port    string
 }
 
+// ErrorResponse
 type ErrorResponse struct {
 	Status  int
 	Errors  []string `json:"errors,omitempty"`
