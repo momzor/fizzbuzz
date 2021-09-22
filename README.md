@@ -31,6 +31,8 @@ This application provide an OpenApi documentation you can check here : [swagger]
 Run `make unit-tests` for unit testing the application
 
 ## enhancements & comming features :
-- [] Hot reload for dev env
+- [] Hot reload for dev env [with air](https://github.com/cosmtrek/air)
 - [] functional tests
 - [] inject dedecated logger
+- [] add linter and pre commit hooks 
+- [] add a fixtures file for fizzbuzz builder test for more table cases
